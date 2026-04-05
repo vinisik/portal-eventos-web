@@ -104,36 +104,35 @@ export default function ListaEventos() {
                 className="block text-center w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors mb-4"
               >
                 Inscrever-se
-              </Link>
+              </Link> 
 
-              {/* Painel Admin */}
               {isAdmin && (
-                <div className="mt-2 pt-4 border-t border-gray-100">
+              <div className="mt-6 pt-5 border-t border-gray-100 space-y-3">
+                <Link 
+                  to={`/admin/evento/${evento.id}/participantes`}
+                  className="block text-center w-full text-xs font-black uppercase tracking-widest text-blue-600 bg-blue-50 py-2 rounded-md hover:bg-blue-100 transition"
+                >
+                  Lista de Inscritos
+                </Link>
+                
+                <div className="flex gap-2">
                   <Link 
-                    to={`/admin/evento/${evento.id}/participantes`}
-                    className="block text-center w-full text-sm font-medium text-blue-600 hover:bg-blue-50 py-2 rounded mb-3 transition"
+                    to={`/admin/evento/${evento.id}/editar`}
+                    className="flex-1 text-center text-xs font-bold text-amber-600 border border-amber-200 py-2 rounded-md hover:bg-amber-50"
                   >
-                    Ver Lista de Participantes
+                    Editar
                   </Link>
                   
-                  <div className="flex justify-between items-center px-1">
-                    <Link 
-                      to={`/admin/evento/${evento.id}/editar`}
-                      className="text-sm font-semibold text-amber-600 hover:text-amber-800 transition"
-                    >
-                      Editar
-                    </Link>
-                    
-                    <button 
-                      onClick={() => handleExcluir(evento.id, evento.titulo)}
-                      className="text-sm font-semibold text-red-500 hover:text-red-700 transition"
-                    >
-                      Excluir
-                    </button>
-                  </div>
+                  <button 
+                    onClick={() => handleExcluir(evento.id, evento.titulo)}
+                    className="flex-1 text-center text-xs font-bold text-red-500 border border-red-100 py-2 rounded-md hover:bg-red-50"
+                  >
+                    Excluir
+                  </button>
                 </div>
-              )}
-            </div>
+              </div>
+            )}         
+          </div>
           ))}
         </div>
       )}

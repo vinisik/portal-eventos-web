@@ -48,6 +48,7 @@ export default function Inscricao() {
       EventoId: ticket.eventoId,
       Ticket: ticket.ticketHash
     });
+    const urlTicket = `${window.location.origin}/ticket/${ticket.ticketHash}`;
 
     return (
       <div className="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md border border-gray-100 text-center mt-10">
@@ -60,7 +61,7 @@ export default function Inscricao() {
         {/* QR Code */}
         <div className="bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300 flex flex-col items-center mb-8">
           
-          <QRCodeSVG value={payloadQrCode} size={200} level="H" includeMargin={true} />
+          <QRCodeSVG value={urlTicket} size={200} level="H" includeMargin={true} />
           
           {/* Exibir os dados abaixo do QR Code */}
           <div className="mt-6 text-left w-full bg-white p-4 rounded border border-gray-200 text-sm">

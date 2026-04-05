@@ -5,6 +5,7 @@ import ListaParticipantes from './pages/ListaParticipantes';
 import Inscricao from './pages/Inscricao';
 import EditarEvento from './pages/EditarEvento';
 import AdminLogin from './pages/AdminLogin';
+import VisualizarIngresso from './pages/VisualizarIngresso';
 
 function App() {
   // Verifica se o navegador tem o registo de que este utilizador é admin
@@ -26,21 +27,23 @@ function App() {
             
             <div className="space-x-6 flex items-center">
               <Link to="/" className="text-gray-600 hover:text-blue-600 transition">Ver Eventos</Link>
-              
+
               {/* Menu do Admin */}
-              {isAdmin ? (
+              {isAdmin && (
                 <>
-                  <Link to="/admin/novo" className="text-gray-600 hover:text-blue-600 transition font-medium">
-                    + Novo Evento
+                  <Link
+                    to="/admin/novo"
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all"
+                  >
+                    <span>+</span> Novo Evento
                   </Link>
-                  <button onClick={fazerLogout} className="text-red-500 hover:text-red-700 text-sm font-medium">
-                    Sair (Admin)
+                  <button
+                    onClick={fazerLogout}
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-bold transition-colors shadow-sm"
+                  >
+                    Encerrar Sessão
                   </button>
                 </>
-              ) : (
-                <Link to="/login" className="text-gray-400 hover:text-gray-600 text-sm transition">
-                  Area de Admin (teste)
-                </Link>
               )}
             </div>
           </div>
@@ -50,7 +53,8 @@ function App() {
           <Routes>
             <Route path="/" element={<ListaEventos />} />
             <Route path="/evento/:id/inscricao" element={<Inscricao />} />
-            <Route path="/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/ticket/:hash" element={<VisualizarIngresso />} />
             
             {/* ROTAS PROTEGIDAS */}
             <Route path="/admin/novo" element={isAdmin ? <NovoEvento /> : <Navigate to="/login" />} />
